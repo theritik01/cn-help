@@ -1,9 +1,3 @@
-Path List
-
-#
-# All the BEST
-#
-
 $ HELP -> curl cn.cheeez.xyz/help
 
 * ARP CLIENT -> curl cn.cheeez.xyz/arpc
