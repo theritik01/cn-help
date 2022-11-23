@@ -1,3 +1,18 @@
 Path List
 
-1. ARP CLIENT -> 
+* ARP CLIENT -> curl cn.cheeez.xyz/arpc
+# ARP SERVER -> curl cn.cheeez.xyz/arps
+* CONCURRENT TCP CLIENT -> curl cn.cheeez.xyz/cotcpc
+# CONCURRENT TCP SERVER -> curl cn.cheeez.xyz/cotcps
+* FILE TRANSFER CLIENT -> curl cn.cheeez.xyz/ftc
+# FILE TRANSFER SERVER -> curl cn.cheeez.xyz/fts
+* FULL DUPLEX CLIENT -> curl cn.cheeez.xyz/fullc
+# FULL DUPLEX SERVER -> curl cn.cheeez.xyz/fulls
+* HALF DUPLEX CLIENT -> curl cn.cheeez.xyz/halfc
+# HALF DUPLEX SERVER -> curl cn.cheeez.xyz/halfs
+* REMOTE COMMAND CLIENT -> curl cn.cheeez.xyz/rcc
+# REMOTE COMMAND SERVER -> curl cn.cheeez.xyz/rcs
+* TCP CLIENT -> curl cn.cheeez.xyz/tcpc
+# TCP SERVER -> curl cn.cheeez.xyz/tcps
+* UDP ECHO CLIENT -> curl cn.cheeez.xyz/udpc
+# UDP ECHO SERVER -> curl cn.cheeez.xyz/udps
