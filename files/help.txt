@@ -1,5 +1,11 @@
 Path List
 
+#
+# All the BEST
+#
+
+$ HELP -> curl cn.cheeez.xyz/help
+
 * ARP CLIENT -> curl cn.cheeez.xyz/arpc
 # ARP SERVER -> curl cn.cheeez.xyz/arps
 * CONCURRENT TCP CLIENT -> curl cn.cheeez.xyz/cotcpc
