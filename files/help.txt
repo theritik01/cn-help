@@ -25,3 +25,5 @@ $ HELP -> curl cn.cheeez.xyz/help
 # UDP ECHO SERVER -> curl cn.cheeez.xyz/udps
 * NAT CISCO PACKET TRACER -> curl cn.cheeez.xyz/nat -o nat.pkt    (will be downloaded to file nat.pkt)
 # VPN CISCO PACKET TRACER -> curl cn.cheeez.xyz/vpn -o vpn.pkt    (will be downloaded to file vpn.pkt)
+* HDLC CISCO PACKET TRACER -> curl cn.cheeez.xyz/hdlc -o hdlc.pkt    (will be downloaded to file hdlc.pkt)
+# PPP CISCO PACKET TRACER -> curl cn.cheeez.xyz/ppp -o ppp.pkt    (will be downloaded to file ppp.pkt)
