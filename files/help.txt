@@ -16,3 +16,4 @@ $ HELP -> curl cn.cheeez.xyz/help
 # TCP SERVER -> curl cn.cheeez.xyz/tcps
 * UDP ECHO CLIENT -> curl cn.cheeez.xyz/udpc
 # UDP ECHO SERVER -> curl cn.cheeez.xyz/udps
+# NAT CISCO PACKET TRACER -> curl cn.cheeez.xyz/nat -o 12.pkt    (will be downloaded to file 12.pkt)

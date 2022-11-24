@@ -98,7 +98,14 @@ import fs from "fs";
     res.send(data);
   });
 
+  app.get("/nat", (req, res) => {
+    //const data = fs.readFileSync("./files/exp12.pkt",);
+    res.download("./files/12.pkt");
+  });
+
   app.listen(3000, () => {
     console.log("Server started on port 3000");
   });
+
+
 })();
