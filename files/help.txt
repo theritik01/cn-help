@@ -1,3 +1,10 @@
+^
+^ To download output into a file instead of viewing it on terminal use the following command:
+^
+^ curl cn.cheeez.xyz/arpc -o client.py
+^
+^ This will download the content of the file into a file named client.py
+
 $ HELP -> curl cn.cheeez.xyz/help
 
 * ARP CLIENT -> curl cn.cheeez.xyz/arpc
