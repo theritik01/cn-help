@@ -106,6 +106,14 @@ import fs from "fs";
     res.download("./files/vpn.pkt");
   });
 
+  app.get("/hdlc", (req, res) => {
+    res.download("./files/hdlc.pkt");
+  });
+
+  app.get("/ppp", (req, res) => {
+    res.download("./files/ppp.pkt");
+  });
+
   app.listen(3000, () => {
     console.log("Server started on port 3000");
   });
