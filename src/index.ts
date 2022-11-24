@@ -99,8 +99,11 @@ import fs from "fs";
   });
 
   app.get("/nat", (req, res) => {
-    //const data = fs.readFileSync("./files/exp12.pkt",);
-    res.download("./files/12.pkt");
+    res.download("./files/nat.pkt");
+  });
+
+  app.get("/vpn", (req, res) => {
+    res.download("./files/vpn.pkt");
   });
 
   app.listen(3000, () => {
