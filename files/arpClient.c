@@ -1,23 +1,8 @@
 import socket
-
-def client_program():
-    host = socket.gethostname()
-    port = 5000
-
-    client_socket = socket.socket()
-    client_socket.connect((host, port))
-
-    message = input(' -> ')
-
-    while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())
-        data = client_socket.recv(1024).decode()
-
-        print("received from server: " + data)
-
-        message = input(" -> ")
-
-    client_socket.close()
-
-if __name__ == '__main__':
-    client_program()
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(('localhost',6968))
+add = input('Enter IP: ')
+s.send(add.encode())
+mac = s.recv(1024)
+mac = mac.decode('utf-8')
+print('MAC of',add,' is: ',mac)
