@@ -1,42 +1,19 @@
-// concurrentTcpServer.c
-
-#include<netinet/in.h> 
-#include<sys/socket.h> 
-#include<stdio.h> 
-#include<string.h> 
-#include<time.h> 
-int main( ) 
-{ 
-struct sockaddr_in sa; 
-struct sockaddr_in cli; 
-int sockfd,conntfd; 
-int len,ch; 
-char str[100]; 
-time_t tick; 
-sockfd=socket(AF_INET,SOCK_STREAM,0); 
-if(sockfd<0) 
-{ 
-printf("error in socket\n"); 
-exit(0); 
-} 
-else printf("Socket opened"); 
-bzero(&sa,sizeof(sa)); 
-sa.sin_port=htons(5600); 
-sa.sin_addr.s_addr=htonl(0); 
-if(bind(sockfd,(struct sockaddr*)&sa,sizeof(sa))<0) 
-{ 
-printf("Error in binding\n"); 
-} 
-else 
-printf("Binded Successfully"); 
-listen(sockfd,50); 
-for(;;) 
-{ 
-len=sizeof(ch); 
-conntfd=accept(sockfd,(struct sockaddr*)&cli,&len); 
-printf("Accepted"); 
-tick=time(NULL); 
-snprintf(str,sizeof(str),"%s",ctime(&tick)); 
-printf("%s",str);write(conntfd,str,100); 
-} 
-}
+import socket
+import time
+def server_program():
+ host = socket.gethostname()
+ port = 6215
+ server_socket = socket.socket()
+ server_socket.bind((host, port))
+ server_socket.listen(5)
+ conn, address = server_socket.accept()
+ print ( "Connection from: " + str (address))
+ while True:
+     ti = time.gmtime()
+     data = (time.asctime(ti))
+     conn.send(data.encode())
+     print('Day/Time: ' + data)
+     break
+ conn.close()
+if __name__ == '__main__':
+ server_program()
