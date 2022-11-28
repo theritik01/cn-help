@@ -1,25 +1,22 @@
-import socket
-
-def server_program():
-    host = socket.gethostname()
-    port = 5000
-
-    server_socket = socket.socket()
-    server_socket.bind((host, port))
-
-    server_socket.listen(3)
-    conn, addr = server_socket.accept()
-    print("connection from: " + str(addr))
-    
-    while True:
-        data = conn.recv(1024).decode()
-        if not data:
-            break
-        doc = open("./" + data, 'r')
-        data = doc.read(1024)
-        conn.send(data.encode())
-
-    conn.close()
-
-if __name__ == '__main__':
-    server_program()
+import socket 
+port = 6443
+s = socket.socket() 
+host = socket.gethostname() 
+s.bind((host, port)) 
+s.listen(5) 
+print ('Server listening....')
+while True:
+    conn, addr = s.accept()
+    print ('Got connection from', addr)
+    fileToBeOpened = conn.recv(1024).decode()
+ 
+    filename='C:/Users/ritik/OneDrive/Desktop/'+fileToBeOpened
+    f = open(filename,'rb')
+    l = f.read(1024)
+    while (l):
+        conn.send(l)
+        print('Sent: ',l.decode('utf-8'))
+        l = f.read(1024)
+    f.close()
+    print('Done sending')
+conn.close()
