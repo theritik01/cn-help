@@ -1,16 +1,12 @@
 import socket
-
-def client_program():
-    host = socket.gethostname()
-    port = 5000
-
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    client_socket.connect((host, port))
-
-    data = input(" -> ")
-    client_socket.sendto(data.encode(), (host, port))
-    
-
-    
-if __name__ == "__main__":
-    client_program()
+msgFromClient = input("Enter string:")
+bytesToSend = str.encode(msgFromClient)
+serverAddressPort = ("127.0.0.1", 6191)
+bufferSize = 1024
+# Create a UDP socket at client side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Send to server using created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+msg = "Message from Server: {}".format(msgFromServer[0])
+print(msg)
