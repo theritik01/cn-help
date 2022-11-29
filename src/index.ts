@@ -114,9 +114,47 @@ import fs from "fs";
     res.download("./files/ppp.pkt");
   });
 
+  app.get('/rhelp', (req,res)=>{
+    const data = fs.readFileSync("./rFiles/help.txt", "utf8");
+    res.send(data);
+  })
+
+  app.get("/rint", (req, res) => {
+    const data = fs.readFileSync("./rFiles/intrupt.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rlbb", (req, res) => {
+    const data = fs.readFileSync("./rFiles/ledBBlink.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rledm", (req, res) => {
+    const data = fs.readFileSync("./rFiles/ledmatrix.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rsm", (req, res) => {
+    const data = fs.readFileSync("./rFiles/stepmotor.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rswitch", (req, res) => {
+    const data = fs.readFileSync("./rFiles/switch.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rshdc", (req, res) => {
+    const data = fs.readFileSync("./rFiles/switchHighDC.py", "utf8");
+    res.send(data);
+  });
+
+  app.get("/rws", (req, res) => {
+    const data = fs.readFileSync("./rFiles/webserver.py", "utf8");
+    res.send(data);
+  });
+
   app.listen(3000, () => {
     console.log("Server started on port 3000");
   });
-
-
 })();

@@ -1,0 +1,16 @@
+^
+^ To download output into a file instead of viewing it on terminal use the following command:
+^
+^ curl cn.cheeez.xyz/rint -o client.py
+^
+^ This will download the content of the file into a file named client.py
+
+$ HELP -> curl cn.cheeez.xyz/rhelp
+
+* INTERUPT -> curl cn.cheeez.xyz/rint
+# LED B BLINK -> curl cn.cheeez.xyz/rlbb
+* LED MATRIX -> curl cn.cheeez.xyz/rledm
+# STEP MOTOR -> curl cn.cheeez.xyz/rsm
+* SWITCH -> curl cn.cheeez.xyz/rswitch
+# SWITCH HIGH POWER DC -> curl cn.cheeez.xyz/rshdc
+* WEBSERVER -> curl cn.cheeez.xyz/rws
