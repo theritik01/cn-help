@@ -1,23 +1,22 @@
-import socket
-
-def client_program():
-    host = socket.gethostname()
-    port = 5000
-
-    client_socket = socket.socket()
-    client_socket.connect((host, port))
-
-    message = input('Enter the filename to read -> ')
-
-    while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())
-        data = client_socket.recv(1024).decode()
-
-        print("received from server: " + data)
-
-        message = input(" -> ")
-
-    client_socket.close()
-
-if __name__ == '__main__':
-    client_program()
+import socket 
+s = socket.socket() 
+host = socket.gethostname()
+port = 6443
+s.connect((host, port))
+filename = input('Enter Filename: ')
+s.send(filename.encode())
+print('Receiving data...')
+while True:
+    data = s.recv(1024).decode()
+    print(data)
+    fileReceived = data
+ 
+    filenameReceived='C:/Users/ritik/OneDrive/Desktop/'+filename
+    with open(filenameReceived,'w+',encoding = 'utf-8') as f:
+        f.write(fileReceived)
+    f.close()
+    if not data:
+        break
+    print('Successfully got the file')
+s.close()
+print('Connection closed')
