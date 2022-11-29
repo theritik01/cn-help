@@ -1,16 +1,21 @@
 import socket
-
-def server_program():
-    host = socket.gethostname()
-    port = 5000
-
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server_socket.bind((host, port))
-
-    while True:
-        data = server_socket.recv(1024).decode('utf-8')
-        print("from connected user: " + data)
-
-    
-if __name__ == "__main__":
-    server_program()
+localIP = "127.0.0.1"
+localPort = 6191
+bufferSize = 1024
+# Create a datagram socket
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Bind to address and ip
+UDPServerSocket.bind((localIP, localPort))
+print("UDP server up and listening")
+# Listen for incoming datagrams
+while(True):
+ bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+ message = bytesAddressPair[0]
+ address = bytesAddressPair[1]
+ clientMsg = "Message from Client:{}".format(message)
+ clientIP = "Client IP Address:{}".format(address)
+ print(clientMsg)
+ print(clientIP)
+ # Sending a reply to client
+ bytesToSend = message
+ UDPServerSocket.sendto(bytesToSend, address)
