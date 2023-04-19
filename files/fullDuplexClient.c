@@ -1,52 +1,39 @@
-// fullDuplexClient.c
-
-#include<sys/socket.h>
-#include<sys/types.h>
-#include<stdio.h>
-#include<arpa/inet.h>
-#include<unistd.h>
-#include<netdb.h>
-#include<netinet/in.h>
-#include<string.h>
-int main(int argc,char *argv[])
-{
-int sd,cd;
-struct sockaddr_in servaddr,cliaddr;
-socklen_t servlen,clilen;
-char buff[1000],buff1[1000];
-pid_t cpid;
-bzero(&servaddr,sizeof(servaddr));
-servaddr.sin_family=AF_INET;
-servaddr.sin_addr.s_addr=inet_addr(argv[1]);
-servaddr.sin_port=htons(9652);
-//Creating a socket, assigning IP address and port number for that socket/
-sd=socket(AF_INET,SOCK_STREAM,0);
-//Connect establishes connection with the server using server IP address/
-cd=connect(sd,(struct sockaddr*)&servaddr,sizeof(servaddr));
-//Fork is used to create a new process/
-cpid=fork();
-if(cpid==0)
-{
-while(1)
-{
-bzero(&buff,sizeof(buff));
-printf("%s\n","Enter the input data:");
-//This function is used to read from server/
-fgets(buff,10000,stdin);
-//Send the message to server/
-send(sd,buff,strlen(buff)+1,0);
-printf("%s\n","Data sent…");
-}
-}
-else
-{
-while(1)
-{
-bzero(&buff1,sizeof(buff1));
-//Receive the message from server/
-recv(sd,buff1,sizeof(buff1),0);
-printf("Received message from the server:%s\n",buff1);
-}
-}
-return 0;
-}
+import socket
+import threading
+import sys
+FLAG = False
+def send_to_server(clsock):
+    global FLAG
+    while True:
+         if FLAG == True:
+             break
+         send_msg = input('')
+         clsock.sendall(send_msg.encode())
+def recv_from_server(clsock):
+ global FLAG
+ while True:
+     data = clsock.recv(1024).decode()
+     if data == 'quit':
+         print('Closing connection')
+         FLAG = True
+         break
+     print('Server:' + data)
+def main():
+ threads = []
+ HOST = 'localhost';
+ PORT = 6969
+ clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ clientSocket.connect((HOST, PORT))
+ print('Client is connected to the Server')
+ t_send = threading.Thread(target=send_to_server, args=(clientSocket,))
+ t_rcv = threading.Thread(target=recv_from_server, args=(clientSocket,))
+ threads.append(t_send)
+ threads.append(t_rcv)
+ t_send.start()
+ t_rcv.start()
+ t_send.join()
+ t_rcv.join()
+ print('EXITING')
+ sys.exit()
+if __name__ == '__main__':
+ main()
